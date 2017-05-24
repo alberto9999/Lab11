@@ -3,26 +3,25 @@ package it.polito.tdp.model;
 public class Tavolo {
 
 	private int numeroPosti;
-	private Gruppo gruppoSeduto;   //tengo traccia del gruppo seduto e vedo se è libero 
+	private boolean occupato;
 	
 	public Tavolo(int numeroPosti){
 		this.numeroPosti=numeroPosti;
+		this.occupato=false;
 	}
 
 	public int getNumeroPosti() {
 		return numeroPosti;
 	}
 
-	public void setNumeroPosti(int numeroPosti) {
-		this.numeroPosti = numeroPosti;
+
+
+	public boolean isOccupato() {
+		return occupato;
 	}
 
-	public Gruppo getGruppoSeduto() {
-		return gruppoSeduto;
-	}
-
-	public void setGruppoSeduto(Gruppo gruppoSeduto) {
-		this.gruppoSeduto = gruppoSeduto;
+	public void setOccupato(boolean occupato) {
+		this.occupato = occupato;
 	}
 	
 }

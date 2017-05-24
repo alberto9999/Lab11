@@ -5,29 +5,31 @@ import java.util.List;
 
 public class Model {
 
-	
-	
-	
-	
-public Object simula(){
+
+private List<Event> infoEventi;
+private String infoSimulazione;
+
+
+public String simula(){
 	List<Tavolo>tavoli=new ArrayList<Tavolo>();
 	creaTavoli(tavoli);
 	
 	Simulator sim = new Simulator(tavoli) ;
 	
 	for(int i=0; i<2000; i++) {
-		Gruppo g = new Gruppo("group_1"+String.valueOf(i),(int) ((0.1+Math.random())*10), Math.random()) ;
-		sim.addGruppo(g,(int) (10*Math.random()+1));  // un gruppo ogni 1-10 minuti
+		Gruppo g = new Gruppo("group_1"+String.valueOf(i),(int) (Math.random()*10)+1, Math.random()) ;
+		sim.addGruppo(g,i*(int)(Math.random()*10)+1);  // un gruppo ogni 1-10 minuti
 	}
 	
-//	sim.run();
+	sim.run();
+	infoEventi=new ArrayList<Event>(sim.getTracciaEventi());
 	
+	infoSimulazione="CLIENTI TOTALI: "+sim.getGruppiTotali()+"\n";
+	infoSimulazione+="CLIENTI SODDISFATTI: "+sim.getGruppiSoddisfatti()+"\n";
+	infoSimulazione+="CLIENTI INSODDISFATTI: "+sim.getGruppiInsoddisfatti()+"\n";
 	
+	return infoSimulazione; 
 	
-	
-	
-	
-	return null;
 }
 
 private void creaTavoli(List<Tavolo> tavoli) {
@@ -47,7 +49,12 @@ private void creaTavoli(List<Tavolo> tavoli) {
 		tavoli.add(new Tavolo(4));
 		tavoli.add(new Tavolo(4));	
 }
+public List<Event> getInfoEventi(){
+	return this.infoEventi;
 	
 	
+}
+	
+
 	
 }

@@ -45,8 +45,10 @@ public void setTolleranza(double tolleranza) {
 }
 
 
-
-
+@Override
+public String toString() {
+	return id+" persone:"+number;
+}
 
 
 }
